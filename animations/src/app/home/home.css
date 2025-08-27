@@ -1,0 +1,109 @@
+ 
+ 
+
+.hero-bg {
+  background:  
+    url('../../watch-30.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.logo-text {
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.section-title {
+  font-weight: 300;
+  letter-spacing: 0.3em;
+}
+
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.transition-all {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:pointer-events-auto {
+  pointer-events: auto;
+}
+
+.water-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.water-effect::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: transform 0.7s ease, opacity 0.7s ease;
+  pointer-events: none;
+}
+
+.water-effect:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+ 
+    /* Hide navigation initially */
+    #menuNav {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      /* Positioned absolutely above button */
+      position: absolute;
+      
+  
+      transform: translateX(50%);
+       
+ 
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      white-space: nowrap;
+      z-index: 10;
+ 
+    }
+
+    /* Show nav on button hover */
+    #menuButton:hover + #menuNav {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+ margin: 100px;
+    }
