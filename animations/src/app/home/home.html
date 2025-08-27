@@ -1,90 +1,203 @@
-<!-- <div class="relative h-screen w-full flex items-center justify-center bg-center bg-cover hero-section"  >
- 
-  <div class="absolute inset-0 bg-black bg-opacity-30"></div>
 
- 
-  <div class="relative flex flex-col items-center justify-center h-screen w-full z-10 p-6">
-  
- 
-    <div class="relative group">
-  
-      <button
-        class="button-header absolute top-0 left-1/2 transform -translate-x-1/2 bg-white text-black px-20 py-3 rounded-b-[50px] shadow transition text-lg font-medium group-hover:hidden"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
 
+<!-- app.component.html -->
+<div class="h-screen w-full flex items-center justify-center bg-center bg-cover main-header">
+  <nav 
+    class="nav-container"
+    [class.nav-visible]="isNavVisible"
+    [class.nav-hidden]="!isNavVisible"
+    (mouseenter)="onNavHover()"
+    (mouseleave)="onNavLeave()"
+  >
+    <div class="flex justify-around items-start space-x-6">
+      <div class="flex flex-col">
+        <span class="font-semibold text-gray-900">Experience</span>
+        <span class="text-gray-500">Expedition Baikal</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-semibold text-gray-900">Technology</span>
+        <span class="text-gray-500">Gore-Tex Pro</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-semibold text-gray-900">Discover</span>
+        <span class="text-gray-500">Five Generations</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-semibold text-orange-600">Watch</span>
+        <span class="text-gray-900">The full documentary</span>
+      </div>
+    </div>
+  </nav>
   
- 
+  <div class="flex flex-col items-center justify-center h-screen w-full z-10 p-6 ">
+    <div 
+      class="menu-btn-container sticky" 
+      id="menu-btn"
+      (mouseenter)="onMenuHover()"
+      (mouseleave)="onMenuLeave()"
+    >
+      <span class="text-2xl font-bold text-center flex flex-col items-center button-menu">
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+      </span>
     </div>
 
- 
     <div class="text-white text-center mt-32">
-      <span class="block font-semibold tracking-wide text-lg mb-2">MAMMUT Expedition</span>
-      <h1 class="text-9xl font-bold mb-2 leading-tight">BAIKAL<br />DOCUMENTARY</h1>
+      <span class="block font-bold tracking-wide text-3xl mb-2">MAMMUT Expedition</span>
+      <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold mb-2 leading-tight">BAIKAL<br />DOCUMENTARY</h1>
     </div>
-
-  
-    <button
-      class="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full shadow hover:bg-gray-100 transition text-lg font-medium"
-    >
-      ↓ To documentary
-    </button>
-
   </div>
-</div> -->
- 
-
- 
- 
-<div class="min-h-screen flex items-center justify-center bg-gray-50  hero-bg">
-
-  <div class="relative inline-block">
-    <!-- Menu Button -->
-    <button
-      id="menuButton"
-        class="button-header absolute -top-32  left-1/2 transform -translate-x-1/2 bg-white text-black px-20 py-3 rounded-b-[50px] shadow transition text-lg font-medium group-hover:hidden"
-     
-      type="button"
-    >
-      Menu
-    </button>
-
-    <!-- Navigation (hidden by default, appears above button on hover) -->
-    <nav id="menuNav" class="text-gray-800 flex    m-auto ">
-      <div>
-        <div class="font-semibold">Experience</div>
-        <div class="text-gray-500">Expedition Baikal</div>
-      </div>
-      <div>
-        <div class="font-semibold">Technology</div>
-        <div class="text-gray-500">Gore-Tex Pro</div>
-      </div>
-      <div>
-        <div class="font-semibold">Discover</div>
-        <div class="text-gray-500">Five Generations</div>
-      </div>
-      <div>
-        <div class="font-semibold text-orange-600">Watch</div>
-        <div class="text-gray-900">The full documentary</div>
-      </div>
-    </nav>
-  </div>
-<div>
-    
- 
-    <div class="text-white text-center mt-32">
-      <span class="block font-semibold tracking-wide text-lg mb-2">MAMMUT Expedition</span>
-      <h1 class="text-9xl font-bold mb-2 leading-tight">BAIKAL<br />DOCUMENTARY</h1>
-    </div>
-
-  
-    <button
-      class="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full shadow hover:bg-gray-100 transition text-lg font-medium"
-    >
-      ↓ To documentary
-    </button>
-
-  </div> 
 </div>
- 
+
+
+
+<section class="w-full h-screen bg-white">
+  <div class="w-2/3 h-full text-white">
+    <h2 class="text-[65px] text-black text-pretty text-center">
+      Endless testing. Years of optimization. Not a single detail is left to chance. After all, form
+      follows function. And then ultimately you get a product that sets only the highest standards.
+    </h2>
+  </div>
+</section>
+
+
+<!-- home.component.html -->
+<div class="relative h-screen w-screen  ">
+  <!-- Progress bar -->
+  <div class="progress-bar fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+    <div class="progress-fill h-full bg-white transition-all duration-500 ease-out" 
+         [style.width]="(currentSection / (totalSections - 1)) * 100 + '%'"></div>
+  </div>
+
+  <!-- Navigation buttons -->
+  <div class="fixed top-1/2 left-4 transform -translate-y-1/2 z-40 flex flex-col space-y-4">
+    <button (click)="scrollToSection(currentSection - 1)" 
+            [disabled]="currentSection === 0"
+            class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-all"
+            [class.opacity-50]="currentSection === 0"
+            [class.opacity-70]="currentSection !== 0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button (click)="scrollToSection(currentSection + 1)" 
+            [disabled]="!sectionScrollState[currentSection].scrolled || currentSection === totalSections - 1"
+            class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-all"
+            [class.opacity-50]="!sectionScrollState[currentSection].scrolled || currentSection === totalSections - 1"
+            [class.opacity-70]="sectionScrollState[currentSection].scrolled && currentSection !== totalSections - 1">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    [style.transform]="'translateX(-' + scrollOffset + ')'"
+    class="flex transition-transform duration-1000 ease-in-out h-screen w-[600vw]"
+  >
+    <!-- Section 1 -->
+    <section class="section flex flex-col w-screen h-screen bg-gradient-to-br from-orange-700 to-orange-500">
+      <div class="flex-1 flex items-center justify-center px-8 py-16">
+        <div class="max-w-7xl mx-auto relative flex items-center justify-center space-x-6">
+          <span class="text-white font-bold text-[180px] md:text-[250px] leading-none select-none">'95</span>
+          <div #section1Items class="item-scroll-container overflow-x-auto w-full max-w-4xl pb-4">
+            <div class="flex space-x-6 w-max">
+              <div class="w-80 h-96 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10"></div>
+              <div class="w-80 h-96 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10"></div>
+              <div class="w-80 h-96 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10"></div>
+              <div class="w-80 h-96 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-white text-lg pb-8 fade-in">
+        {{ getHintText() }}
+        <div *ngIf="!sectionScrollState[0].scrolled" class="scroll-hint mt-2">→</div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="flex w-screen h-screen">
+      <div class="bg-orange-600 w-1/5 flex items-center justify-center relative">
+        <span class="text-white text-[180px] md:text-[250px] leading-none select-none absolute mt-20">'06</span>
+      </div>
+      <div class="w-4/5 h-full overflow-hidden">
+        <div #section2Items class="item-scroll-container overflow-x-auto h-full">
+          <div class="flex h-full w-max">
+            <div class="w-screen h-full bg-gradient-to-r from-cyan-800 to-teal-600 flex items-center justify-center">
+              <div class="text-6xl font-bold">Memories from 2006</div>
+            </div>
+            <div class="w-screen h-full bg-gradient-to-r from-teal-800 to-emerald-600 flex items-center justify-center">
+              <div class="text-6xl font-bold">More 2006 moments</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="flex w-screen h-screen">
+      <div class="bg-blue-950 w-1/5 flex items-center justify-center relative">
+        <span class="text-white text-[180px] md:text-[250px] leading-none select-none absolute mt-20">11/12</span>
+      </div>
+      <div class="w-4/5 h-full overflow-hidden">
+        <div #section3Items class="item-scroll-container overflow-x-auto h-full">
+          <div class="flex h-full w-max">
+            <div class="w-screen h-full bg-gradient-to-r from-blue-900 to-indigo-800 flex items-center justify-center">
+              <div class="text-6xl font-bold">2011 Adventures</div>
+            </div>
+            <div class="w-screen h-full bg-gradient-to-r from-indigo-900 to-purple-800 flex items-center justify-center">
+              <div class="text-6xl font-bold">2012 Discoveries</div>
+            </div>
+            <div class="w-screen h-full bg-gradient-to-r from-purple-900 to-pink-800 flex items-center justify-center">
+              <div class="text-6xl font-bold">Special Moments</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="flex w-screen h-screen">
+      <div class="bg-green-800 w-1/5 flex items-center justify-center relative">
+        <span class="text-white text-[180px] md:text-[250px] leading-none select-none absolute mt-20">'15</span>
+      </div>
+      <div class="w-4/5 h-full overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-green-900 to-lime-800 flex items-center justify-center">
+          <div class="text-6xl font-bold">2015 Highlights</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="flex w-screen h-screen">
+      <div class="bg-purple-800 w-1/5 flex items-center justify-center relative">
+        <span class="text-white text-[180px] md:text-[250px] leading-none select-none absolute mt-20">'19</span>
+      </div>
+      <div class="w-4/5 h-full overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-purple-900 to-fuchsia-800 flex items-center justify-center">
+          <div class="text-6xl font-bold">2019 Journey</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 -->
+    <section class="bg-gradient-to-br from-purple-900 to-indigo-800 w-screen h-screen flex items-center justify-center">
+      <div class="text-center">
+        <span class="text-white text-[180px] md:text-[250px] leading-none select-none">'23</span>
+        <p class="text-white text-2xl mt-8 fade-in">The journey continues...</p>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+  <!-- <section class="w-full h-screen">
+  <div class="flex flex-col items-center justify-center h-full bg-gray-800 text-white">
+    <h2 class="text-4xl font-bold mb-4">Vertical Scrolling Section</h2>
+    <p class="text-lg">
+      Endless testing. Years of optimization. Not a single detail is left to chance. After all, form
+      follows function. And then ultimately you get a product that sets only the highest standards.
+    </p>
+  </div>
+</section> -->
