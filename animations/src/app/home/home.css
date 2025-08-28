@@ -45,8 +45,8 @@ body {
   transition: margin 0.3s ease;
 }
 
-.main-header.body-menu-hover {
-  margin: 25px;
+.nav-container.body-menu-hover {
+  margin: 45px;
 }
 
 .main-header {
@@ -139,13 +139,13 @@ body {
     border-right: 20px solid transparent;
   }
 
-  .main-header.body-menu-hover {
+ .nav-container.body-menu-hover {
     margin: 15px;
   }
 }
 
 @media (max-width: 480px) {
-  .main-header.body-menu-hover {
+.nav-container.body-menu-hover {
     margin: 10px;
   }
 }

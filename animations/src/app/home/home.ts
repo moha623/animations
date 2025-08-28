@@ -2,10 +2,11 @@ import { CommonModule, NgClass } from '@angular/common';
  
  import { Component, HostListener, OnInit, Inject, PLATFORM_ID, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Footer } from "../footer/footer";
 
 @Component({
   selector: 'app-home',
-  imports: [ CommonModule],
+  imports: [CommonModule],
   standalone: true,
   templateUrl: './home.html',
   styleUrl: './home.css'
@@ -13,7 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class Home {
  isNavVisible = false;
   isHovering = false;
-  private bodyMarginClass = 'body-menu-hover';
+    bodyMarginClass = 'body-menu-hover';
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
@@ -69,6 +70,8 @@ export class Home {
       this.isNavVisible = false;
     }
   }
+
+  
   @ViewChild('section1Items') section1Items!: ElementRef;
   @ViewChild('section2Items') section2Items!: ElementRef;
   @ViewChild('section3Items') section3Items!: ElementRef;

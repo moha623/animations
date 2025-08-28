@@ -1,0 +1,17 @@
+<!-- footer-animation.component.html -->
+<div class="footer-container  h-screen flex items-center justify-center">
+  <div class="footer-content">
+    <div class="phrase-container">
+      <span 
+        *ngFor="let letter of letters" 
+        class="letter  " 
+        [class.visible]="letter.visible"
+        [class.active]="letter.active"
+        [class.space]="letter.char === ' '">
+        {{ letter.char === ' ' ? '&nbsp;' : letter.char }}
+      </span>
+    </div>
+    
+ 
+  </div>
+</div>
